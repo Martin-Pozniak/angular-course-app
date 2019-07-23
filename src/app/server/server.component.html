@@ -1,1 +1,11 @@
-<h3>Server Component {{serverNumber}}</h3>
+<div [ngStyle]="{'background': getColor(), 'padding':'10px', 'text-align':'center', 'border-radius':'10px'}" [ngClass]="{'online':serverStatus==='online'}">
+  <h3 > Server {{serverId}} is {{getServerStatus()}}</h3>
+  <button (click)="onShowDetailsClicked()"  class="btn btn-primary">Show Details</button>
+  <div  *ngIf="showDetails">
+    <p>Here is some secret details</p>
+  </div>
+  <ol>
+    <li *ngFor="let logItem of logDetails; let i = index" [ngStyle]="{'background': i >= 4 ? 'blue' : 'none'}" [ngClass]="{'white': i >= 4}">{{logItem}}</li>
+  </ol>
+</div>
+

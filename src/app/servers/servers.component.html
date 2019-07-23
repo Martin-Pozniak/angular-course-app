@@ -1,7 +1,20 @@
 <h1>Server List</h1>
-<app-server></app-server>
-<app-server></app-server>
-<app-server></app-server>
-<app-server></app-server>
-<app-server></app-server>
-<app-server></app-server>
+<input type="text" class="form-control" (input)="onUpdateServerName($event)" placeholder="Server Name"/>
+<!-- <input type="text" class="form-control" [(ngModel)]="serverName" /> -->
+<p>{{serverName}}</p>
+<button (click)="onServerCreated()" [disabled]="!allowNewServer" class="btn btn-primary">Add Server</button>
+<p *ngIf="serverCreated; else noServer">{{serverCreationStatus}}</p>
+<!-- An else block is effectively created by using the ng-template -->
+<ng-template #noServer>
+  <p>No Server Was Created</p>
+</ng-template>
+<hr>
+<!-- <input type="text" [(ngModel)]="userName" />
+<p>{{userName}}</p>
+<button (click)="onUserNameChanged()" [disabled]="userName == ''" class="btn btn-primary">Clear User</button>-->
+<div>
+  <ol *ngFor="let server of servers">
+    <app-server></app-server>
+  </ol>
+</div>
+
